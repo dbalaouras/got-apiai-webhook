@@ -34,16 +34,16 @@ class GOT(object):
         url = "%s?%s" % (self._base_url, urlencode({'name': name}))
         q = Request(url)
         q.add_header('User-Agent', 'curl/7.51.0')
-        q.add_header('Accept', '*/*')
+        q.add_header('Accept', 'application/json')
 
-        result = urlopen(q).read()
-
+        result = urlopen(q).readall().decode('utf-8')
         data = json.loads(result)
+
         return data
 
 
 if __name__ == '__main__':
     got = GOT()
-    info = got.get_character_info("Eddard")
+    info = got.get_character_info("Sansa Stark")
     print(info)
     print(type(locals()))
