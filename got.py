@@ -36,7 +36,22 @@ class GOT(object):
         q.add_header('User-Agent', 'curl/7.51.0')
         q.add_header('Accept', 'application/json')
 
-        result = urlopen(q).readall().decode('utf-8')
+        result = urlopen(q).read().decode('utf-8')
+        data = json.loads(result)
+
+        return data
+
+    def get_random_quote(self):
+        """
+        Get a random GOT quote
+        :return:
+        """
+        url = "https://got-quotes.herokuapp.com/quotes"
+        q = Request(url)
+        q.add_header('User-Agent', 'curl/7.51.0')
+        q.add_header('Accept', 'application/json')
+
+        result = urlopen(q).read().decode('utf-8')
         data = json.loads(result)
 
         return data
