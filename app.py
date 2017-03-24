@@ -22,6 +22,15 @@ def setup_logging():
         app.logger.setLevel(logging.INFO)
 
 
+@app.route('/', methods=['GET'])
+def index():
+    res = "<h1>GoT Chatbot Demo</h1><p>Made by <a href='https://helvia.io' target='_blank'>helvia.io</a>.</p>"
+
+    r = make_response(res)
+    r.headers['Content-Type'] = 'text/html'
+    return r
+
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
